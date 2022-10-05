@@ -7,7 +7,7 @@
                 
             </navbar-toggle-button>
             <router-link class="navbar-brand" to="/">
-             
+                <img :src="logo" class="navbar-brand-img" alt="...">
             </router-link>
 
             <slot name="mobile-right">
@@ -66,7 +66,7 @@
                     <div class="row">
                         <div class="col-6 collapse-brand">
                             <router-link to="/">
-                               <img :src="logo">
+                                <img :src="logo">
                             </router-link>
                         </div>
                         <div class="col-6 collapse-close">

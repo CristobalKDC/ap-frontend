@@ -23,25 +23,42 @@
     <!-- Page content -->
     <b-container class="mt--8 pb-5">
       <b-row class="justify-content-center">
-        <b-col lg="5" md="7">
-          <b-card no-body class="bg-secondary border-0 mb-4">
-            <b-card-header class="bg-transparent pb-5"  >
+        <b-col lg="4" md="7">
+          <b-card no-body class="bg-secondary border-0 mb-0">
+            <b-card-header class="bg-transparent pb-5 "  >
+              
+              
               <div class="text-muted text-center mt-2 mb-3"><H3>Introduzca DNI</H3></div>
 
               <div class="btn-wrapper text-center">
-               
-                
-              <input type="text" class="m-4 p-4  "  placeholder="Introduzca DNI"  maxlength="9"  required v-model="form.dni"  name="DNI" id="DNI">
-            </div>
-          </b-card-header>
-        <base-button type="primary" native-type="submit" class="m-3 ht-6 p-5" v-on:click="sendEntry()" >Entrada</base-button>
-          <base-button type="danger" native-type="submit" class="m-3 wh-6 p-5"  v-on:click="sendExit()"   >Salida</base-button>
-           
+              <input  class="m-4 p-2   "
+                          type = 'text'
+                          name = 'DNI'
+                          v-model = form.dni
+                          minlength="9"
+                          maxlength="9"
+                          required="true"
+                          placeholder="Coloque DNI"
+                          >
+                        </div>
+              <div class="btn-wrapper text-center">
+                <button class="btn  btn-icon bg-danger" type="submit" @click="registroEntry">
+                  
+                  <span  class="btn-inner--text"  >Entrar</span>
+                </button>
+                <button  class="btn  btn-icon bg-success" @click="registroExit">
+                 
+                  <span class="btn-inner--text"  >Salir</span>
+                </button>
+              </div>
+            
+            </b-card-header>
+            
           </b-card>
+        
           <b-row class="mt-3">
            
 
-            
           </b-row>
         </b-col>
       </b-row>
@@ -49,58 +66,76 @@
   </div>
 </template>
 <script>
-  console.log("hola uso consolaaaaz")
-import axios from "axios"; 
-import moment from 'moment'
-import Vue from "vue";
-import { ref } from 'vue'
+import axios from "axios";
+import moment from "moment"
 
-import { max } from "moment";
 
-//let DNI = ref("");
-
-export default {
-   data(){
-        return {
-          form: {
-            
-              dni: '',
-            
-          }
-        }
-    },
-  methods:{
-    sendEntry: async function(){
-      
-      await axios.post("http://localhost:5000/users/", { dni: this.form.dni, date: moment().format('LLL') , type:"Entry"}).then((response) => {
-        console.log(response.data);
-        alert("Hora de entrada  " + moment().format('LLL'));
-      window.location.reload();
-        
-      });
-    },
-    sendExit: async function () {
-
-      await axios.post("http://localhost:5000/users/", { dni: this.form.dni, date: moment().format('LLL'), type: "Exit" }).then((response) => {
-        console.log(response.data);
-        window.alert("Hora de salida " + moment().format('LLL'));
-        window.location.reload();
-        
-        
-          
-        
-      });
-    }
-  }
-  
-  //reated() {
-
+  export default {
     
-     // console.log(response.data);
-     // return response.data;
-   // }
-  }
+    data() {
+      return {
+      
+        form:{
+          dni: '',
+         
+        }
+  }},
 
 
+    methods: {
+      obtener() {
+        const response = axios.get("http://localhost:5000/users/").then((response) => {console.log(response.data)})
+      },
+      registroEntry() {
+        //console.log(Date()+ 'Entry');
+        const response = axios.post("http://localhost:5000/users/", {dni:this.form.dni, date: moment().format(), type: 'Entry'})
+        .then((response)=> {console.log(response.data)});
+        
+        alert('Hora de entrada registrada: '+moment().format());
+         window.location.reload()
+        
+        
+      },
+      registroExit() {
+        //console.log(Date()+ 'Entry');
+        const response = axios.post("http://localhost:5000/users/", {dni:this.form.dni, date: moment().format(), type: 'Exit'})
+        .then((response)=> {console.log(response.data)});
+        window.location.reload();
+      },
+      
+    },
+  
+  // created() {
+    
 
+      // axios.post("http://localhost:5000/users/", {dni:'12397430S', date: Date(), type : 'Entry'})
+      // .then((response) => {
+        
+      //   console.log(response.data);
+      // })
+      // .catch((error) => {
+      //   console.log("There was an error: " + error);
+      // });
+
+      // axios.delete("http://localhost:5000/users/6336dfce0e702685dbc7cf19")
+      // .then((response) => {
+        
+      //   console.log(response.data);
+      // })
+      // .catch((error) => {
+      //   console.log("There was an error: " + error);
+      // });
+
+      // axios.get("http://localhost:5000/users/")
+      // .then((response) => {
+        
+      //   console.log(response.data.users);
+      // })
+      // .catch((error) => {
+      //   console.log("There was an error: " + error);
+      // });
+  // }
+}
+  
+  
 </script>

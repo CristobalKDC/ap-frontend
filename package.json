@@ -29,6 +29,7 @@
     "sass": "^1.55.0",
     "sweetalert2": "^9.5.4",
     "vee-validate": "^3.2.1",
+    "Vue": "npm:vue@^2.7.10",
     "vue-chartjs": "^3.5.0",
     "vue-clipboard2": "^0.3.0",
     "vue-flatpickr-component": "^8.1.2",
@@ -37,13 +38,13 @@
     "vue2-transitions": "^0.2.3"
   },
   "devDependencies": {
-    "vue": "^2.6.11",
     "@vue/cli-plugin-babel": "^3.7.0",
     "@vue/cli-plugin-eslint": "^3.7.0",
     "@vue/cli-service": "^3.7.0",
     "@vue/eslint-config-prettier": "^4.0.1",
     "babel-plugin-component": "^1.1.0",
     "sass-loader": "^7.1.0",
+    "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.11"
   },
   "postcss": {
