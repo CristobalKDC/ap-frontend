@@ -93,9 +93,19 @@
     methods: {
       onSubmit() {
        console.log("im working...");
-        axios.post("http://localhost:5000/admin", this.model).then((response) => { response.data })
-        window.location.reload();
+        axios.post("http://localhost:5000/admin", this.model).then((response) => {
+          console.log(response.data);
+          localStorage.setItem(
+            "DatosUsuario",
+            JSON.stringify({
+              token: response.data.token,
+              userId: response.data.userId,
+            }))
+        });
+        
+        
       }
+
     }
 
   };
