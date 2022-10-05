@@ -54,7 +54,7 @@
         </template>
         <template v-else>
           <i :class="link.icon"></i>
-          <span class="nav-link-text">{{ link.name }}</span>
+          <span class="nav-link-text">{{link.name}}</span>
         </template>
       </component>
     </slot>
@@ -90,8 +90,8 @@ export default {
   },
   provide() {
     return {
-      addLink: this.addChild,
-      removeLink: this.removeChild
+     // addLink: this.addChild,
+      //removeLink: this.removeChild
     };
   },
   inject: {
