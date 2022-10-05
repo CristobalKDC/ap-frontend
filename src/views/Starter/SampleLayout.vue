@@ -13,7 +13,7 @@
         </sidebar-item>
       </template>
     </side-bar>
-    <div class="main-content">
+    <div class="main-content">tghrty
       <dashboard-navbar></dashboard-navbar>
 
       <div @click="$sidebar.displaySidebar(false)">

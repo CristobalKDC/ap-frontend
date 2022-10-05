@@ -18,7 +18,7 @@
             Blog
           </b-nav-item>
           <b-nav-item href="https://www.creative-tim.com/license" target="_blank">
-            License
+            Licensedtghd
           </b-nav-item>
         </b-nav>
       </b-col>

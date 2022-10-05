@@ -121,16 +121,7 @@
       </b-row>
       <!-- End charts-->
 
-      <!--Tables-->
-      <b-row class="mt-5">
-        <b-col xl="8" class="mb-5 mb-xl-0">
-          <page-visits-table></page-visits-table>
-        </b-col>
-        <b-col xl="4" class="mb-5 mb-xl-0">
-          <social-traffic-table></social-traffic-table>
-        </b-col>
-      </b-row>
-      <!--End tables-->
+     
     </b-container>
 
   </div>
@@ -145,9 +136,6 @@
   import BaseProgress from '@/components/BaseProgress';
   import StatsCard from '@/components/Cards/StatsCard';
 
-  // Tables
-  import SocialTrafficTable from './Dashboard/SocialTrafficTable';
-  import PageVisitsTable from './Dashboard/PageVisitsTable';
 
   export default {
     components: {
@@ -155,8 +143,7 @@
       BarChart,
       BaseProgress,
       StatsCard,
-      PageVisitsTable,
-      SocialTrafficTable
+      
     },
     data() {
       return {

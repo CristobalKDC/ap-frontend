@@ -1,10 +1,7 @@
 <template>
   <div>
     <base-header class="pb-6 pb-8 pt-5 pt-md-8 bg-gradient-success">
-      <!-- Card stats -->
-      <b-row>
       
-      </b-row>
     </base-header>
     <b-container fluid class="mt--7">
       <b-row>
