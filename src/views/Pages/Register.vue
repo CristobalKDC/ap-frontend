@@ -1,6 +1,7 @@
 <template>
   <div>
     <!-- Header -->
+    <!-- REIGSTRAR NUEVO ADMIN -->
     <div class="header bg-gradient-success py-7 py-lg-8 pt-lg-9">
       <b-container class="container">
         <div class="header-body text-center mb-7">
@@ -102,7 +103,7 @@
               userId: response.data.userId,
             }))
         });
-        
+        window.location.reload();
         
       }
 

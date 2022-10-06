@@ -5,29 +5,7 @@
     @click="toggleDropDown"
     v-click-outside="closeDropDown"
   >
-    <slot name="title-container" :is-open="isOpen">
-      <component
-        :is="titleTag"
-        class="btn-rotate"
-        :class="[{'dropdown-toggle': hasToggle}, titleClasses]"
-        :aria-expanded="isOpen"
-        data-toggle="dropdown"
-      >
-        <slot name="title" :is-open="isOpen">
-          <i :class="icon"></i> {{ title }}
-        </slot>
-      </component>
-    </slot>
-    <ul
-      class="dropdown-menu"
-      :class="[
-        { show: isOpen },
-        { 'dropdown-menu-right': menuOnRight },
-        menuClasses
-      ]"
-    >
-      <slot></slot>
-    </ul>
+    
   </component>
 </template>
 <script>

@@ -3,12 +3,8 @@
         <div class="container-fluid">
 
             <!--Toggler-->
-            <navbar-toggle-button @click.native="showSidebar">
-                
-            </navbar-toggle-button>
-            <router-link class="navbar-brand" to="/">
-                <img :src="logo" class="navbar-brand-img" alt="...">
-            </router-link>
+            
+            
 
             <slot name="mobile-right">
                 <ul class="nav align-items-center d-md-none">
@@ -64,15 +60,6 @@
 
                 <div class="navbar-collapse-header d-md-none">
                     <div class="row">
-<<<<<<< HEAD
-                       
-=======
-                        <div class="col-6 collapse-brand">
-                            <router-link to="/">
-                                <img :src="logo">
-                            </router-link>
-                        </div>
->>>>>>> a006bae3d29adc8df2dcf6a6d0dacdfe144d6abf
                         <div class="col-6 collapse-close">
                             <navbar-toggle-button @click.native="closeSidebar"></navbar-toggle-button>
                         </div>

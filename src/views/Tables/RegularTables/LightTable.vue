@@ -65,10 +65,15 @@
 </template>
 <script>
     import axios from 'axios';
-  import moment from "moment"
-  import projects from './../projects'
   import { Table, TableColumn} from 'element-ui'
   
+  const recuperarDatosAdmin = () => {
+            const recuperarDatos = JSON.parse(localStorage.getItem('DatosUsuario'));
+            if (recuperarDatos && recuperarDatos.token) {
+                return [recuperarDatos.token, recuperarDatos.userId];
+            }
+        };
+
   export default {
     name: 'light-table',
     components: {
@@ -77,6 +82,7 @@
     },
     
     created() {
+        axios.defaults.headers = { Authorization: 'Bearer ' + recuperarDatosAdmin()[0]};
     axios.get("http://localhost:5000/users/").then ((response) => {
       this.users = response.data.users
       this.allUsers = response.data.users.filter(user=> user.type.includes('Entry'))})
@@ -84,19 +90,12 @@
     },
     data() {
         return {
-            projects,
             users: [],
             allUsers: [],
             currentPage: 1
         }
     }
-    
-    // data() {
-    //   return {
-    //     projects,
-    //     currentPage: 1
-    //   };
-    // }
+
   }
 
 

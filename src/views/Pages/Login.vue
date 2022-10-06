@@ -1,6 +1,7 @@
 <template>
   <div>
     <!-- Header -->
+    <!-- REGISTRO DE ENTRADAS Y SALIDAS DE USUARIOS -->
     <div class="header bg-gradient-success py-7 py-lg-8 pt-lg-9">
       <b-container>
         <div class="header-body text-center mb-7">
@@ -83,9 +84,7 @@ import moment from "moment"
 
 
     methods: {
-      obtener() {
-        const response = axios.get("http://localhost:5000/users/").then((response) => {console.log(response.data)})
-      },
+      
       registroEntry() {
         //console.log(Date()+ 'Entry');
         const response = axios.post("http://localhost:5000/users/", {dni:this.form.dni, date: moment().format(), type: 'Entry'})
@@ -105,36 +104,6 @@ import moment from "moment"
       
     },
   
-  // created() {
-    
-
-      // axios.post("http://localhost:5000/users/", {dni:'12397430S', date: Date(), type : 'Entry'})
-      // .then((response) => {
-        
-      //   console.log(response.data);
-      // })
-      // .catch((error) => {
-      //   console.log("There was an error: " + error);
-      // });
-
-      // axios.delete("http://localhost:5000/users/6336dfce0e702685dbc7cf19")
-      // .then((response) => {
-        
-      //   console.log(response.data);
-      // })
-      // .catch((error) => {
-      //   console.log("There was an error: " + error);
-      // });
-
-      // axios.get("http://localhost:5000/users/")
-      // .then((response) => {
-        
-      //   console.log(response.data.users);
-      // })
-      // .catch((error) => {
-      //   console.log("There was an error: " + error);
-      // });
-  // }
 }
   
   

@@ -58,12 +58,12 @@
     </b-card>
 </template>
 <script>
-  import projects from './../projects'
+
   import axios from 'axios';
   import { Table, TableColumn} from 'element-ui'
 
   const recuperarDatosAdmin = () => {
-            const recuperarDatos = JSON.parse(localStorage.getItem('datosUsuario'));
+            const recuperarDatos = JSON.parse(localStorage.getItem('DatosUsuario'));
             if (recuperarDatos && recuperarDatos.token) {
                 return [recuperarDatos.token, recuperarDatos.userId];
             }
@@ -76,16 +76,11 @@
       [TableColumn.name]: TableColumn
     },
     created() {
-        console.log(recuperarDatosAdmin()[0])
         
+    axios.defaults.headers = { Authorization: 'Bearer ' + recuperarDatosAdmin()[0]};
     axios.get("http://localhost:5000/users/").then ((response) => {
-      this.users = response.data.users
-      this.exitUsers = response.data.users.filter(user=> user.type.includes('Exit'))},
-                {
-					headers: {
-						Authorization: 'Bearer ' + recuperarDatosAdmin()[0], 
-					}
-				});
+      this.users = response.data.users,
+      this.exitUsers = response.data.users.filter(user=> user.type.includes('Exit'))});
       
     },
     data() {

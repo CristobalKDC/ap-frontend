@@ -7,19 +7,13 @@
       class="navbar-horizontal navbar-main navbar-top navbar-dark"
       expand="lg"
     >
-      <div slot="brand" class="navbar-wrapper">
-        <b-navbar-brand to="/">
-          <img src="img/brand/white.png">
-        </b-navbar-brand>
-      </div>
+      
 
      <template>
        <div class="navbar-collapse-header">
          <b-row>
            <b-col cols="6" class="collapse-brand">
-             <router-link to="/">
-               <img src="img/brand/green.png">
-             </router-link>
+             
            </b-col>
            <b-col cols="6" class="collapse-close">
              <button type="button" class="navbar-toggler" @click="showMenu = false">
@@ -30,22 +24,27 @@
          </b-row>
        </div>
          <b-navbar-nav  class="align-items-lg-center ml-lg-auto">
-           <b-nav-item to="/dashboard">
-               <i class="ni ni-planet"></i>
-               <span class="nav-link-inner--text">Dashboard</span>
-           </b-nav-item>
            <b-nav-item to="/register">
                <i class="ni ni-circle-08"></i>
-               <span class="nav-link-inner--text">Register</span>
+               <span class="nav-link-inner--text">Register Admin</span>
            </b-nav-item>
            <b-nav-item to="/login">
                <i class="ni ni-key-25"></i>
                <span class="nav-link-inner--text">Login</span>
            </b-nav-item>
-           <b-nav-item to="/profile">
+          
+
+           <!-- usar token para ternario -->
+
+          <b-nav-item   @click="cerrarSesion" v-if="access">
+               <i class="ni ni-user-run "></i>
+               <span class="nav-link-inner--text" >Log Out</span>
+          </b-nav-item>
+          <b-nav-item to="/profile" v-else>
                <i class="ni ni-single-02"></i>
-               <span class="nav-link-inner--text">Profile</span>
+               <span class="nav-link-inner--text">Admin</span>
            </b-nav-item>
+
        </b-navbar-nav>
      </template>
     </base-nav>
@@ -59,39 +58,29 @@
       </zoom-center-transition>
     </div>
 
-    <footer class="py-5" id="footer-main">
-      <b-container >
-        <b-row align-v="center" class="justify-content-xl-between">
-          <b-col xl="6">
-            <div class="copyright text-center text-xl-left text-muted">
-              © {{year}} <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
-            </div>
-          </b-col>
-          <b-col xl="6" class="col-xl-6">
-            <b-nav  class="nav-footer justify-content-center justify-content-xl-end">
-              <b-nav-item href="https://www.creative-tim.com" target="_blank" >
-                Creative Tim
-              </b-nav-item>
-              <b-nav-item href="https://www.creative-tim.com/presentation" target="_blank" >
-                About Us
-              </b-nav-item>
-              <b-nav-item href="http://blog.creative-tim.com"  target="_blank">
-                Blog
-              </b-nav-item>
-              <b-nav-item href="https://www.creative-tim.com/license" target="_blank">
-                License
-              </b-nav-item>
-            </b-nav>
-          </b-col>
-        </b-row>
-      </b-container>
-    </footer>
+    
   </div>
 </template>
 <script>
   import { BaseNav } from '@/components';
   import { ZoomCenterTransition } from 'vue2-transitions';
 
+  let access
+  const recuperarDatosAdmin = () => {
+            const recuperarDatos = JSON.parse(localStorage.getItem('DatosUsuario'));
+            if (recuperarDatos && recuperarDatos.token) {
+			        return [recuperarDatos.token, recuperarDatos.userId];
+	          }else {
+		          return [];
+	          }
+};
+
+if (recuperarDatosAdmin().length === 0) {
+			access=false;
+		} else {
+			access=true;
+		}
+console.log(access)
   export default {
     components: {
       BaseNav,
@@ -105,6 +94,7 @@
     },
     data() {
       return {
+        access: Boolean,
         showMenu: false,
         menuTransitionDuration: 250,
         pageTransitionDuration: 200,
@@ -118,6 +108,11 @@
       }
     },
     methods: {
+      cerrarSesion() {
+        localStorage.removeItem('DatosUsuario');
+       window.location.reload();
+        
+      },
       toggleNavbar() {
         document.body.classList.toggle('nav-open');
         this.showMenu = !this.showMenu;
