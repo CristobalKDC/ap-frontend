@@ -9,7 +9,7 @@
               <h1 class="text-light">Ooops!</h1>
               <p class="text-lead text-white">Page not found. Don't worry though, we have plenty of other pages to explore</p>
 
-              <router-link to="/dashboard" class="font-weight-bold text-white mt-5">Back to dashboard</router-link>
+              <router-link to="/login" class="font-weight-bold text-white mt-5">Back to User Login</router-link>
             </b-col>
           </b-row>
         </div>
@@ -25,13 +25,12 @@
       <b-container >
         <b-row align-v="center" class="row-grid">
           <b-col md="6">
-            <b-img src="img/theme/landing-2.png" fluid />
+            <b-img src="img/theme/Broken-Window-PNG-Clipart.png" fluid />
           </b-col>
           <b-col md="6">
             <div class="pr-md-5">
-              <h1 class="text-light">Explore pages</h1>
-              <p class="text-light">If you want to get inspiration or just show something directly to your clients, you can jump start your development with our pre-built example pages.</p>
-              <router-link to="/user" class="font-weight-bold text-warning mt-5">Explore pages</router-link>
+              <h1 class="text-light">Error</h1>
+              <router-link to="/login" class="font-weight-bold text-warning mt-5">Return</router-link>
             </div>
           </b-col>
         </b-row>

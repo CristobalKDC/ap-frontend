@@ -5,21 +5,15 @@
       <template slot="links">
         
 
-        <sidebar-item
+        <sidebar-item v-if="access===false"
               :link="{
                 name: 'Login Admin',
                 path: '/profile',
                 icon: 'ni ni-single-02 text-green'
                 }">
         </sidebar-item>
-        <sidebar-item
-                  :link="{
-                    name: 'Log Out',
-                    path: '/register',
-                    icon: 'ni ni-single-02 text-red'
-                  }">
-        </sidebar-item>
-        <sidebar-item
+        
+        <sidebar-item v-if="access===true"
                 :link="{
                   name: 'Tables',
                   path: '/tables',
@@ -29,18 +23,22 @@
 
         <sidebar-item
                   :link="{
-                    name: 'Login',
+                    name: 'User Login',
                     path: '/login',
-                    icon: 'ni ni-key-25 text-info'
+                    icon: 'ni ni-briefcase-24 text-info'
                   }">
         </sidebar-item>
-        <sidebar-item
+        <sidebar-item v-if="access===true"
                   :link="{
                     name: 'Register Admin',
                     path: '/register',
                     icon: 'ni ni-circle-08 text-blue'
                   }">
         </sidebar-item>
+        <b-nav-item @click="cerrarSesion" v-if="access===true">
+              <i class="ni ni-user-run text-red"></i>
+              <span class="nav-link-inner--text" >Log Out</span>
+        </b-nav-item>
         
       </template>
     </side-bar>
@@ -81,13 +79,38 @@
   import DashboardContent from './Content.vue';
   import { FadeTransition } from 'vue2-transitions';
 
+  let access;
+  const recuperarDatosAdmin = () => {
+            const recuperarDatos = JSON.parse(localStorage.getItem('DatosUsuario'));
+            if (recuperarDatos && recuperarDatos.token) {
+			        return [recuperarDatos.token, recuperarDatos.userId];
+	          }else {
+		          return [];
+	          }
+};
+
+if (recuperarDatosAdmin().length === 0) {
+			access=false;
+		} else {
+			access=true;
+		}
+
   export default {
     components: {
       DashboardNavbar,
       DashboardContent,
       FadeTransition
     },
+    data() {
+      return {
+        access
+      };
+    },
     methods: {
+      cerrarSesion() {
+        localStorage.removeItem('DatosUsuario');
+        window.location.replace('/')
+      },
       initScrollbar() {
         let isWindows = navigator.platform.startsWith('Win');
         if (isWindows) {

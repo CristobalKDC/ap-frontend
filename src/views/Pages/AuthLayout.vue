@@ -24,26 +24,33 @@
          </b-row>
        </div>
          <b-navbar-nav  class="align-items-lg-center ml-lg-auto">
-           <b-nav-item to="/register">
+           <b-nav-item to="/register" v-if="access===true">
                <i class="ni ni-circle-08"></i>
                <span class="nav-link-inner--text">Register Admin</span>
            </b-nav-item>
+           <b-nav-item to="/tables" v-if="access===true">
+               <i class="ni ni-bullet-list-67"></i>
+               <span class="nav-link-inner--text">Tables</span>
+           </b-nav-item>
            <b-nav-item to="/login">
-               <i class="ni ni-key-25"></i>
-               <span class="nav-link-inner--text">Login</span>
+               <i class="ni ni-briefcase-24"></i>
+               <span class="nav-link-inner--text">User Login</span>
            </b-nav-item>
           
-
-           <!-- usar token para ternario -->
-
-          <b-nav-item   @click="cerrarSesion" v-if='access===true'>
+           
+           <!-- usar ternario -->
+        
+            <b-nav-item   @click="cerrarSesion" v-if="access===true">
                <i class="ni ni-user-run "></i>
                <span class="nav-link-inner--text" >Log Out</span>
-          </b-nav-item>
-          <b-nav-item to="/profile" v-else>
+          </b-nav-item> 
+           <b-nav-item to="/profile" v-else>
                <i class="ni ni-single-02"></i>
                <span class="nav-link-inner--text">Admin</span>
            </b-nav-item>
+          
+          
+          
 
        </b-navbar-nav>
      </template>
@@ -65,7 +72,7 @@
   import { BaseNav } from '@/components';
   import { ZoomCenterTransition } from 'vue2-transitions';
 
-  let access
+  let access;
   const recuperarDatosAdmin = () => {
             const recuperarDatos = JSON.parse(localStorage.getItem('DatosUsuario'));
             if (recuperarDatos && recuperarDatos.token) {
@@ -80,7 +87,7 @@ if (recuperarDatosAdmin().length === 0) {
 		} else {
 			access=true;
 		}
-console.log('El acceso es '+ access)
+console.log( access)
   export default {
     components: {
       BaseNav,
@@ -94,7 +101,7 @@ console.log('El acceso es '+ access)
     },
     data() {
       return {
-        access: Boolean,
+        access,
         showMenu: false,
         menuTransitionDuration: 250,
         pageTransitionDuration: 200,

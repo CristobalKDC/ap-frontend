@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <b-pagination first-number last-number :per-page="perPage" :size="size" :value="value" @change="(val) => $emit('change', val)" :align="align" :total-rows="total">
       <template v-slot:prev-text>
         <a class="page-link" aria-label="Previous">

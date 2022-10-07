@@ -3,7 +3,7 @@
     <!-- Header -->
     <!-- REGISTRO DE ENTRADAS Y SALIDAS DE USUARIOS -->
     <div class="header bg-gradient-success py-7 py-lg-8 pt-lg-9">
-      <b-container>
+      <b-container class="container"> 
         <div class="header-body text-center mb-7">
           <b-row class="justify-content-center">
             <b-col xl="5" lg="6" md="8" class="px-5">

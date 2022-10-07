@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="bg-default" style="height:100vh">
     <!-- Header -->
     <!-- LOGEAR ADMIN -->
-    <div class="header bg-gradient-success py-7 py-lg-8 pt-lg-9">
+    <div class="header bg-gradient-warning py-7 py-lg-8 pt-lg-9">
       <b-container class="container">
         <div class="header-body text-center mb-7">
           <b-row class="justify-content-center">
@@ -21,11 +21,11 @@
       </div>
     </div>
     <!-- Page content -->
-    <b-container class="mt--8 pb-5">
+    <b-container class="mt--8 pb-5 ">
       <!-- Table -->
-      <b-row class="justify-content-center">
+      <b-row class="justify-content-center ">
         <b-col lg="6" md="8" >
-          <b-card no-body class="bg-secondary border-0">
+          <b-card no-body class="bg-secondary border-0 ">
             
             <b-card-body class="px-lg-5 py-lg-5">
               
@@ -76,8 +76,7 @@
       return {
         model: {
           email: '',
-          password: '',
-          //agree: false
+          password: ''
         }
       }
     },
@@ -92,6 +91,7 @@
               token: response.data.token,
               userId: response.data.userId,
             }))
+            window.location.replace('/#/tables/');
             window.location.reload();
         });
         
