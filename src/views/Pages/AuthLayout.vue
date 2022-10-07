@@ -36,7 +36,7 @@
 
            <!-- usar token para ternario -->
 
-          <b-nav-item   @click="cerrarSesion" v-if="access">
+          <b-nav-item   @click="cerrarSesion" v-if='access===true'>
                <i class="ni ni-user-run "></i>
                <span class="nav-link-inner--text" >Log Out</span>
           </b-nav-item>
@@ -80,7 +80,7 @@ if (recuperarDatosAdmin().length === 0) {
 		} else {
 			access=true;
 		}
-console.log(access)
+console.log('El acceso es '+ access)
   export default {
     components: {
       BaseNav,
